@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+    <h1>COVID-19 Weekend Project</h1>
+    
+    <div class"graph_view">
+          <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+
+
+<div class="tools">
+            <div class="graph_search">
+                  <select name="continents" id="continents">
+                      <option value="Asia">Asia</option>
+                      <option value="America">America</option>
+                      <option value="Europe">Europe</option>
+                      <option value="Africa">Africa</option>
+                      <option value="World">World</option>
+                  </select>
+                  <select name="countries" id="countries"></select>
+           </div>  
+           <div class="graph_filters">
+                 <button type="button">Confirmed Cases</button>
+                 <button type="button">Number of Deaths</button>
+                 <button type="button">Number of recovered</button>
+                 <button type="button"> Number of critical condition</button> 
+           </div>
+           <div class="newviewinfo" style="background-color: rgb(242, 183, 183);">INFO ABOUT COUNTRIES</div>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>
