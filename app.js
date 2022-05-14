@@ -5,8 +5,9 @@ const res = await fetch('https://corona-api.com/countries');
  return data;
 }
 counties().then((data) => {
-    console.log(data);
-
+//    const info = document.querySelector(".covidInfo");
+   console.log(Object.keys(data).length);
+   console.log(data);
 })
 
 async function nameOfCountries(){
@@ -24,11 +25,25 @@ nameOfCountries().then((data) => {
              console.log(counties);
              for (let i = 0; i < data.length; i++) {
                if(data[i].region === counties){
-               countryOptions.innerHTML += `<option id='new-country' value='$'>${data[i].name.common}</option>`;
+                countryOptions.innerHTML += `<option id='new-country' value='${data[i].name.common}'>${data[i].name.common}</option>`;
            }
+           if("World" === counties){
+            countryOptions.innerHTML += `<option id='new-country' value='${data[i].name.common}'>${data[i].name.common}</option>`;
+       }
            }
      });
 }); 
+
+
+
+// Display covid stats for specfic country 
+const info = document.querySelector(".covidInfo");
+const countries = document.querySelector('#countries');
+countries.addEventListener('change', (event) => {
+    console.log(event.target.value);
+});
+
+
 
 
  const ctx = document.getElementById('myChart').getContext('2d');
