@@ -1,14 +1,11 @@
 // covid 19 stats api 
-async function counties() {
-const res = await fetch('https://corona-api.com/countries');
+async function counties(codeName) {
+  let url = 'https://corona-api.com/countries/' + codeName;
+ const res = await fetch(url);
  const data = await res.json();
  return data;
 }
-counties().then((data) => {
-//    const info = document.querySelector(".covidInfo");
-   console.log(Object.keys(data).length);
-   console.log(data);
-})
+
 
 async function nameOfCountries(){
    let res = await fetch('https://restcountries.herokuapp.com/api/v1');
@@ -25,22 +22,24 @@ nameOfCountries().then((data) => {
              console.log(counties);
              for (let i = 0; i < data.length; i++) {
                if(data[i].region === counties){
-                countryOptions.innerHTML += `<option id='new-country' value='${data[i].name.common}'>${data[i].name.common}</option>`;
+                countryOptions.innerHTML += `<option id='new-country' value='${data[i].cca2}'>${data[i].name.common}</option>`;
            }
            if("World" === counties){
-            countryOptions.innerHTML += `<option id='new-country' value='${data[i].name.common}'>${data[i].name.common}</option>`;
+            countryOptions.innerHTML += `<option id='new-country' value='${data[i].cca2}'>${data[i].name.common}</option>`;
        }
            }
      });
 }); 
 
 
-
 // Display covid stats for specfic country 
 const info = document.querySelector(".covidInfo");
 const countries = document.querySelector('#countries');
 countries.addEventListener('change', (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
+       counties(event.target.value).then((result) => {
+           console.log(result);
+       })
 });
 
 
