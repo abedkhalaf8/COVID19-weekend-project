@@ -88,24 +88,11 @@ countries.addEventListener('change', (event) => {
       data: {
           labels: arrayOfCount,
           datasets: [{
-              label: '# of Votes',
+            //   label: '# of Votes',
               data: btnData,
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
+              backgroundColor: random_rgba(btnData.length),
+              borderColor: 
+                random_rgba(btnData.length),
               borderWidth: 1
           }]
       },
@@ -167,3 +154,14 @@ btn4.addEventListener('click', ()=> {
   })
 })
 };
+
+// generate random colors for chartJS Graph
+function random_rgba(numOfcolors) {
+    let arrOfcolors = [];
+    let o = Math.round, r = Math.random, s = 255;
+    for(let i=0; i<numOfcolors; i++){
+        arrOfcolors.push('rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')');
+    }
+    return arrOfcolors;
+}
+
