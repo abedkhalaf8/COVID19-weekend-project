@@ -7,7 +7,7 @@ async function counties(codeName) {
   }
   
   
-  async functionß nameOfCountries(){
+async function nameOfCountries(){
      let res = await fetch('https://restcountries.herokuapp.com/api/v1');
      const data = await res.json();
      return data;
