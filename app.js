@@ -13,7 +13,7 @@ async function nameOfCountries(){
      return data;
   }
 
-  nameOfCountries().then((data) => {
+nameOfCountries().then((data) => {
     const countryOptions = document.querySelector('#countries');
     const continentsSelector = document.querySelector('#continents');
         continentsSelector.addEventListener('change', (event) => {
@@ -21,6 +21,7 @@ async function nameOfCountries(){
              let counties;
              counties = event.target.value;
              console.log(counties);
+             countryOptions.innerHTML += "<option disabled selected value> -- select a country -- </option>"
              for (let i = 0; i < data.length; i++) {
                if(data[i].region === counties){
                 countryOptions.innerHTML += `<option id='new-country' value='${data[i].cca2}'>${data[i].name.common}</option>`;
