@@ -98,7 +98,7 @@ countries.addEventListener('change', (event) => {
       data: {
           labels: arrayOfCount,
           datasets: [{
-            //   label: '# of Votes',
+              label: '',
               data: btnData,
               backgroundColor: random_rgba(btnData.length),
               borderColor: 
