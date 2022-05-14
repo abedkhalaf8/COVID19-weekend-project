@@ -31,11 +31,11 @@ nameOfCountries().then((data) => {
              countryOptions.innerHTML += "<option disabled selected value> -- select a country -- </option>"
              for (let i = 0; i < data.length; i++) {
                if(data[i].region === counties){
-                arrayOfCount.push(data[i].name.common);
+                arrayOfCount.push(data[i].cca2);
                 countryOptions.innerHTML += `<option id='new-country' value='${data[i].cca2}'>${data[i].name.common}</option>`;
            }
            if("World" === counties){
-            arrayOfCount.push(data[i].name.common);
+            arrayOfCount.push(data[i].cca2);
             countryOptions.innerHTML += `<option id='new-country' value='${data[i].cca2}'>${data[i].name.common}</option>`;
        }
       }
@@ -133,24 +133,37 @@ const arr2 = [];
 const arr3 = [];
 const arr4 = [];
 const arr5 = [];
+// console.log(res.data[0].latest_data.confirmed)
 for (let i = 0; i < res.data.length; i++) {
-    arr5.push(res.data[i].name);
+    for (let j = 0; j < arrayOfCount.length; j++) {
+        if (arrayOfCount[j] === res.data[i].code){
+            arr1.push(res.data[i].latest_data.confirmed);
+            arr2.push(res.data[i].name)
+            arr3.push(res.data[i].latest_data.deaths)
+            arr4.push(res.data[i].latest_data.recovered);
+            arr5.push(res.data[i].latest_data.critical);
+        }   
+    }
 }
-console.log(arr5);
+// c
+// console.log("arr2",arr2);
+// console.log("arr3",arr3);
+// console.log("arr4",arr4);
+// console.log("arr5",arr5);
 btn1.addEventListener('click', ()=> {
-    chart(arrayOfCount, res.data.timeline[0].confirmed);
+    chart(arr2, arr1);
   })
-// btn2.addEventListener('click', ()=> {
-//     chart(arrayOfCount, btnData);
+btn2.addEventListener('click', ()=> {
+    chart(arr2, arr3);
 
-//   })
-// btn3.addEventListener('click', ()=> {
-//     chart(arrayOfCount, btnData);
+  })
+btn3.addEventListener('click', ()=> {
+    chart(arr2, arr4);
 
-//   })
-// btn4.addEventListener('click', ()=> {
-//     chart(arrayOfCount, btnData);
+  })
+btn4.addEventListener('click', ()=> {
+    chart(arr2, arr5);
 
-//   })
+  })
 })
 };
