@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
     <h1>COVID-19 Weekend Project</h1>
     
@@ -17,13 +17,14 @@
 <div class="tools">
             <div class="graph_search">
                   <select name="continents" id="continents">
+                      <option></option>
                       <option value="Asia">Asia</option>
-                      <option value="America">America</option>
+                      <option value="Americas">Americas</option>
                       <option value="Europe">Europe</option>
                       <option value="Africa">Africa</option>
                       <option value="World">World</option>
                   </select>
-                  <select name="countries" id="countries"></select>
+                  <select name="countries" id="countries" placeholder="hi"></select>
            </div>  
            <div class="graph_filters">
                  <button type="button">Confirmed Cases</button>

@@ -1,4 +1,3 @@
-
 const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'bar',
@@ -35,3 +34,37 @@ const myChart = new Chart(ctx, {
     }
 });
 
+
+
+result = fetch('https://corona-api.com/countries').then((Response) => {
+     return Response.json();ß
+    }).then((data) => {
+        console.log(data);
+    })
+
+
+
+// get names of countries API GITHUB
+fetch('https://restcountries.herokuapp.com/api/v1').then((Response) => {
+        return Response.json();
+       }).then((data) => {
+         const countryOptions = document.querySelector('#countries');
+         const continentsSelector = document.querySelector('#continents');
+             continentsSelector.addEventListener('change', (event) => {
+                  document.querySelector('#countries').options.length = 0;
+                  let counties;
+                  counties = event.target.value;
+                  console.log(counties);
+                  for (let i = 0; i < data.length; i++) {
+                    if(data[i].region === counties){
+                    countryOptions.innerHTML += `<option id='new-country' value='$'>${data[i].name.common}</option>`;
+                }
+                }
+
+          });
+
+        });
+
+
+
+        
