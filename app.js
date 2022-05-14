@@ -42,6 +42,46 @@ result = fetch('https://corona-api.com/countries').then((Response) => {
         console.log(data);
     })
 
+<<<<<<< Updated upstream
+=======
+// Display covid stats for specfic country 
+
+const info = document.querySelector(".covidInfo");
+const countries = document.querySelector('#countries');
+countries.addEventListener('change', (event) => {
+   
+
+       counties(event.target.value).then((result) => {
+    
+            // a table for the covid stats
+            let statsTable = '<table>';
+             
+            // FIRST ROW 
+             statsTable = statsTable + '<tr>';
+             statsTable = statsTable + '<td id="firstRow">Total Cases</td>';  
+             statsTable = statsTable + '<td id="firstRow">new cases</td>';    
+             statsTable = statsTable + '<td id="firstRow">total deaths</td>';   
+             statsTable = statsTable + '<td id="firstRow">new deaths</td>';   
+             statsTable = statsTable + '<td id="firstRow">total recovered</td>';  
+             statsTable = statsTable + '<td id="firstRow">in critical condition</td>';   
+             statsTable = statsTable + '</tr>';
+
+             // covidSTATS FROM THE API WEBSITE
+             statsTable = statsTable + '<tr>';
+             statsTable = statsTable + `<td id="secondRow">${result.data.timeline[0].confirmed}</td>`;
+             statsTable = statsTable + `<td id="secondRow">${result.data.timeline[0].new_confirmed}</td>`;
+             statsTable = statsTable + `<td id="secondRow">${result.data.latest_data.deaths}</td>`;  
+             statsTable = statsTable + `<td id="secondRow">${result.data.timeline[0].new_deaths}</td>`; 
+             statsTable = statsTable + `<td id="secondRow">${result.data.latest_data.recovered}</td>`; 
+             statsTable = statsTable + `<td id="secondRow">${result.data.latest_data.critical}</td>`;  
+             statsTable = statsTable + '</tr>';
+
+             // close the table tage
+             statsTable = statsTable + '</table>';
+             document.querySelector(".covidInfo").innerHTML = statsTable;
+        })
+ });
+>>>>>>> Stashed changes
 
 
 // get names of countries API GITHUB
