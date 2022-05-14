@@ -1,6 +1,11 @@
         // covid 19 stats api 
 async function counties(codeName) {
-    let url = 'https://corona-api.com/countries/' + codeName;
+    let url;
+    if (codeName === undefined ) {
+         url = 'https://corona-api.com/countries'
+    } else {
+    url = 'https://corona-api.com/countries/' + codeName;
+   }
    const res = await fetch(url);
    const data = await res.json();
    return data;
@@ -13,6 +18,7 @@ async function nameOfCountries(){
      return data;
   }
 
+
 nameOfCountries().then((data) => {
     const countryOptions = document.querySelector('#countries');
     const continentsSelector = document.querySelector('#continents');
@@ -21,17 +27,23 @@ nameOfCountries().then((data) => {
              let counties;
              counties = event.target.value;
              console.log(counties);
+             const arrayOfCount = [];
              countryOptions.innerHTML += "<option disabled selected value> -- select a country -- </option>"
              for (let i = 0; i < data.length; i++) {
                if(data[i].region === counties){
+                arrayOfCount.push(data[i].name.common);
                 countryOptions.innerHTML += `<option id='new-country' value='${data[i].cca2}'>${data[i].name.common}</option>`;
            }
            if("World" === counties){
+            arrayOfCount.push(data[i].name.common);
             countryOptions.innerHTML += `<option id='new-country' value='${data[i].cca2}'>${data[i].name.common}</option>`;
        }
-           }
+      }
+      buttons(arrayOfCount);
      });
+                 
 }); 
+
 // Display covid stats for specfic country 
 
 const info = document.querySelector(".covidInfo");
@@ -69,14 +81,15 @@ countries.addEventListener('change', (event) => {
         })
  });
 
+  function chart(arrayOfCount, btnData) {
   const ctx = document.getElementById('myChart').getContext('2d');
   const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: arrayOfCount,
           datasets: [{
               label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
+              data: btnData,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -104,3 +117,40 @@ countries.addEventListener('change', (event) => {
           }
       }
   });
+}
+
+
+
+//button function 
+function buttons(arrayOfCount) {
+const btn1 = document.querySelector("#btn1");
+const btn2 = document.querySelector("#btn2");
+const btn3 = document.querySelector("#btn3");
+const btn4 = document.querySelector("#btn4");
+counties().then((res) => {
+const arr1 = [];
+const arr2 = [];
+const arr3 = [];
+const arr4 = [];
+const arr5 = [];
+for (let i = 0; i < res.data.length; i++) {
+    arr5.push(res.data[i].name);
+}
+console.log(arr5);
+btn1.addEventListener('click', ()=> {
+    chart(arrayOfCount, res.data.timeline[0].confirmed);
+  })
+// btn2.addEventListener('click', ()=> {
+//     chart(arrayOfCount, btnData);
+
+//   })
+// btn3.addEventListener('click', ()=> {
+//     chart(arrayOfCount, btnData);
+
+//   })
+// btn4.addEventListener('click', ()=> {
+//     chart(arrayOfCount, btnData);
+
+//   })
+})
+};
