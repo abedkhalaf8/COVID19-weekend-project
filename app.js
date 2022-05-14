@@ -1,4 +1,9 @@
-        // covid 19 stats api 
+document.querySelector("#btn1").disabled = true;
+document.querySelector("#btn2").disabled = true;
+document.querySelector("#btn3").disabled = true;
+document.querySelector("#btn4").disabled = true;
+ 
+ // covid 19 stats api 
 async function counties(codeName) {
     let url;
     if (codeName === undefined ) {
@@ -23,6 +28,10 @@ nameOfCountries().then((data) => {
     const countryOptions = document.querySelector('#countries');
     const continentsSelector = document.querySelector('#continents');
         continentsSelector.addEventListener('change', (event) => {
+             document.querySelector("#btn1").disabled = false;
+             document.querySelector("#btn2").disabled = false;
+             document.querySelector("#btn3").disabled = false;
+             document.querySelector("#btn4").disabled = false;
              document.querySelector('#countries').options.length = 0;
              let counties;
              counties = event.target.value;
@@ -39,7 +48,8 @@ nameOfCountries().then((data) => {
             countryOptions.innerHTML += `<option id='new-country' value='${data[i].cca2}'>${data[i].name.common}</option>`;
        }
       }
-      buttons(arrayOfCount);
+         
+            buttons(arrayOfCount);
      });
                  
 }); 
