@@ -13,6 +13,7 @@ async function nameOfCountries(){
      return data;
   }
 
+
 nameOfCountries().then((data) => {
     const countryOptions = document.querySelector('#countries');
     const continentsSelector = document.querySelector('#continents');
@@ -21,15 +22,21 @@ nameOfCountries().then((data) => {
              let counties;
              counties = event.target.value;
              console.log(counties);
+             const arrayOfCount = [];
              countryOptions.innerHTML += "<option disabled selected value> -- select a country -- </option>"
              for (let i = 0; i < data.length; i++) {
                if(data[i].region === counties){
+                arrayOfCount.push(data[i].name.common);
                 countryOptions.innerHTML += `<option id='new-country' value='${data[i].cca2}'>${data[i].name.common}</option>`;
            }
            if("World" === counties){
+            arrayOfCount.push(data[i].name.common);
             countryOptions.innerHTML += `<option id='new-country' value='${data[i].cca2}'>${data[i].name.common}</option>`;
        }
            }
+           chart(arrayOfCount, ()=> {
+               addEventListener
+           });
      });
 }); 
 // Display covid stats for specfic country 
@@ -69,14 +76,15 @@ countries.addEventListener('change', (event) => {
         })
  });
 
+  function chart(arrayOfCount, covidData) {
   const ctx = document.getElementById('myChart').getContext('2d');
   const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: arrayOfCount,
           datasets: [{
               label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
+              data: covidData,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -104,3 +112,4 @@ countries.addEventListener('change', (event) => {
           }
       }
   });
+}
