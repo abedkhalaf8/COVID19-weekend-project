@@ -16,9 +16,8 @@ async function counties(codeName) {
    return data;
   }
   
-  
 async function nameOfCountries(){
-     let res = await fetch('https://restcountries.herokuapp.com/api/v1');
+     let res = await fetch('https://nameless-citadel-58066.herokuapp.com/https://restcountries.herokuapp.com/api/v1');
      const data = await res.json();
      return data;
   }
